@@ -1,116 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&family=Teachers:ital,wght@0,400..800;1,400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap');
 
 body {
-  background-color: #45474B; /* Black background */
-  color: #F5F7F8; /* Green text */
-  font-family: 'Albert Sans'; /* Albert Sans font */
-  margin: 0;
-}
-
-header {
-  background-color: #45474B; /* Black background for header */
-  color: #F5F7F8; /* Green text for header */
-  padding: 20px;
-  position: fixed; /* Position fixed to stay fixed at the top */
-  top: 0; /* Stick to the top */
-  left: 0;
-  right: 0;
-  z-index: 1;
-  text-align: center;
-  transition: background-color 0.3s ease-in-out;
-}
-
-nav ul {
-  list-style-type: none;
+  font-family: 'Albert Sans', sans-serif;
+  background-color: #FFFFFF;
+  color: #334155;
+  line-height: 1.8;
   margin: 0;
   padding: 0;
-  display: flex;
-}
-
-nav ul li {
-  margin-right: 10px;
-}
-
-nav ul li a {
-  text-decoration: none;
-  color: #F4CE14; /* Green text for navigation links */
+  overflow: hidden; /* Remove scrollbars */
 }
 
 main {
+  max-width: 1200px;
+  margin: 40px auto;
   padding: 20px;
-  text-align: center;
-  margin-top: 80px;
 }
 
-.about {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.about h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-  font: 'Albert Sans';
-}
-
-.about-text {
-  font-size: 16px;
-  margin-bottom: 10px;
-  font: 'Albert Sans';
-}
-
-p {
+.blog-title h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0F172A;
   text-align: left;
-  font: 'Albert Sans';
-
-  margin: 0 auto;
-  max-width: 700px; 
-
-  padding: 20px 0;
-  max-width: 700px; 
+  margin-bottom: 40px;
 }
 
-.profile {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+.about p {
+  font-size: 15px;
+  color: #334155;
   margin-bottom: 20px;
-}
-
-.profile img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  object-position: center;
-  margin-bottom: 10px;
-}
-
-.profile h1 {
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-
-.intro {
-  text-align: left;
-  margin-top: 0;
-  margin-bottom: 5px;
-}
-
-.intro::before {
-  content: "";
-  display: inline-block;
-  width: 20px;
+  text-align: justify;
 }
 
 a {
-  color: #379777;
-  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding: 0 5px;
+  box-sizing: border-box;
 }
 
-/* Change link color on hover */
 a:hover {
-  color: #0077be; /* Ocean blue */
+  color: white;
+  background-color: #2563EB;
+  text-decoration: none;
+  padding: 0 5px;
+  border-radius: 0;
 }
