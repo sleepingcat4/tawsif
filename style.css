@@ -47,34 +47,28 @@ a:hover {
 }
 
 
-@keyframes circular-motion {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-      transform: translate(100px, 0);
-    }
-    50% {
-      transform: translate(100px, 100px);
-    }
-    75% {
-      transform: translate(0, 100px);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
+@keyframes horizontal-scroll {
+  0% {
+    transform: translateX(-100%);
   }
-  
-  .mobile-warning {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18px;
-    color: red;
-    font-weight: bold;
-    animation: circular-motion 5s infinite linear;
-    z-index: 9999;
+  100% {
+    transform: translateX(100%);
   }
+}
+
+.moving-text {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  animation: horizontal-scroll 10s linear infinite;
+  z-index: 9999;
+}
+
   
