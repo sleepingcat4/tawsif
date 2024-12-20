@@ -1,4 +1,13 @@
-function changeCursorToImage(event) {
+function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  }
+  
+  if (isMobileDevice()) {
+    const warning = document.getElementById('mobile-warning');
+    warning.style.display = 'block';
+  }
+
+  function changeCursorToImage(event) {
     const ghost = document.querySelector('.wrench');
     const isLink = event.target.tagName.toLowerCase() === 'a';
     const image = isLink ? 'link.png' : 'wrench.png';
