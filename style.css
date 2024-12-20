@@ -49,10 +49,10 @@ a:hover {
 
 @keyframes horizontal-scroll {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(-100%);
   }
 }
 
@@ -70,5 +70,6 @@ a:hover {
   animation: horizontal-scroll 10s linear infinite;
   z-index: 9999;
 }
+
 
   
