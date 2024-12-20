@@ -1,32 +1,39 @@
-const themeToggle = document.getElementById('themeToggle');
-const body = document.body;
-
-themeToggle.addEventListener('change', () => {
-  body.classList.toggle('dark-theme');
-});
-
-window.addEventListener("DOMContentLoaded", function () {
-    const footer = document.querySelector("footer");
-    
-    function toggleFooterVisibility() {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        footer.classList.add("show-footer");
-      } else {
-        footer.classList.remove("show-footer");
-      }
-    }
-    
-    toggleFooterVisibility();
-    window.addEventListener("scroll", toggleFooterVisibility);
-  });
+function changeCursorToImage(event) {
+    const ghost = document.querySelector('.wrench');
+    const isLink = event.target.tagName.toLowerCase() === 'a';
+    const image = isLink ? 'link.png' : 'wrench.png';
   
-  function redirectToMobile() {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    ghost.src = image;
   
-    if (isMobile) {
-      window.location.href = "portable device/mobile.html";
-    }
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+  
+    ghost.style.left = `${mouseX - 50}px`;
+    ghost.style.top = `${mouseY - 50}px`;
+  
+    ghost.style.visibility = 'visible';
   }
   
-  window.onload = redirectToMobile;
+  const ghost = document.querySelector('.wrench');
+  ghost.style.position = 'absolute';
+  ghost.style.width = '100px';
+  ghost.style.height = '100px';
+  ghost.style.pointerEvents = 'none';
+  
+  document.addEventListener('mousemove', changeCursorToImage);
+  
+  document.body.style.cursor = 'none';
+  
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    link.style.cursor = 'none';
+  });
+  
+  document.addEventListener('mouseleave', () => {
+    ghost.style.visibility = 'hidden';
+  });
+  
+  document.addEventListener('mouseenter', () => {
+    ghost.style.visibility = 'visible';
+  });
   
