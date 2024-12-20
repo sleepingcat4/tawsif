@@ -45,3 +45,36 @@ a:hover {
   padding: 0 5px;
   border-radius: 0;
 }
+
+
+@keyframes circular-motion {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(100px, 0);
+    }
+    50% {
+      transform: translate(100px, 100px);
+    }
+    75% {
+      transform: translate(0, 100px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+  
+  .mobile-warning {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    color: red;
+    font-weight: bold;
+    animation: circular-motion 5s infinite linear;
+    z-index: 9999;
+  }
+  
