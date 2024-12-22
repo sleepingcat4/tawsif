@@ -22,7 +22,7 @@
         }
         article {
             margin-top: 5em;
-            font-size: 13px;
+            font-size: 15px;
             color: #334155;
         }
         .side-nav {
@@ -48,7 +48,7 @@
             background-color: black;
         }
         .side-nav {
-            font-size: 0.5rem;
+            font-size: 0.7rem;
         }
         .fixed-size {
             width: 3em;
@@ -61,7 +61,7 @@
             font-size: 1.3rem;
         }
         blockquote {
-            background: #f9f9f9;
+            background: #0F172A;
             border-left: 10px solid #ccc;
             margin: 1.5em 10px;
             padding: 0.5em 10px;
@@ -139,7 +139,7 @@
                 const htmlContent = marked.parse(markdown);
 
                 // Add article label (A1, A2, etc.)
-                combinedContent += `<h2 class="article-label">Article ${articleCounter}</h2>`;
+                combinedContent += `<h2 class="article-label">POST ${articleCounter}</h2>`;
                 combinedContent += htmlContent;  // Article content
 
                 // Add horizontal line between articles
