@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="icon" href="favicon.png" type="space_invader.png">
+    <link rel="icon" type="image/png" href="space_invader.png">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
@@ -14,14 +12,16 @@
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Great+Vibes&family=Space+Grotesk:wght@300..700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap');
         
         body {
-            font-family: 'Funnel Sans', sans-serif;
+            font-family: 'Albert Sans', sans-serif;
             font-size: 1.0rem;
         }
         article {
             margin-top: 5em;
+            font-size: 13px;
+            color: #334155;
         }
         .side-nav {
             color: black;
@@ -108,101 +108,3 @@
         }
     </style>
 </head>
-<body class="container">
-    <div class="row">
-        <div class="col-1 side-nav-div">
-            <button onclick="window.location.replace('https://sleeping4cat.github.io/sleepingcat/')" class="side-nav fixed-size"><span class="fa fa-home"></span></button>
-            <button onclick="increaseFontSize()" class="side-nav fixed-size">A+</button>
-            <button onclick="decreaseFontSize()" class="side-nav fixed-size">A-</button>
-        </div>
-        <article class="col-11 mt-5"></article>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-    <script>
-        const isDarkModeEnabled = false;
-
-        async function loadMarkdown() {
-            const fileNames = ['seq2seq.md'];  // Hardcoded filenames
-            let combinedContent = "";
-            let articleCounter = 1;
-
-            for (const fileName of fileNames) {
-                const response = await fetch(fileName);
-                if (!response.ok) {
-                    document.querySelector('article').innerHTML = `<p>Error loading ${fileName}.</p>`;
-                    return;
-                }
-                const markdown = await response.text();
-                const htmlContent = marked.parse(markdown);
-
-                // Add article label (A1, A2, etc.)
-                combinedContent += `<h2 class="article-label">Post ${articleCounter}</h2>`;
-                combinedContent += htmlContent;  // Article content
-
-                // Add horizontal line between articles
-                combinedContent += "<hr>";
-
-                articleCounter++;
-            }
-
-            // Remove last horizontal line
-            combinedContent = combinedContent.replace(/<hr>$/, '');
-
-            document.querySelector('article').innerHTML = combinedContent;
-
-            renderMathInElement(document.querySelector('article'), {
-                delimiters: [
-                    { left: "$$", right: "$$", display: true },
-                    { left: "$", right: "$", display: false }
-                ]
-            });
-        }
-
-        function increaseFontSize() {
-            const html = document.documentElement;
-            const currentFont = parseFloat(window.getComputedStyle(html).fontSize);
-            if (currentFont < 35) html.style.fontSize = (currentFont + 3) + "px";
-        }
-
-        function decreaseFontSize() {
-            const html = document.documentElement;
-            const currentFont = parseFloat(window.getComputedStyle(html).fontSize);
-            if (currentFont > 14) html.style.fontSize = (currentFont - 3) + "px";
-        }
-
-        function addDarkmodeWidget() {
-            if (!isDarkModeEnabled) return;
-
-            const options = {
-                time: '0.5s',
-                mixColor: '#fff',
-                backgroundColor: '#fff',
-                buttonColorDark: '#100f2c',
-                buttonColorLight: '#fff',
-                saveInCookies: false,
-                label: '🌙',
-                autoMatchOsTheme: true
-            };
-            const darkmode = new Darkmode(options);
-            darkmode.showWidget();
-
-            function toggleDarkMode() {
-                if (darkmode.isActivated()) {
-                    document.body.classList.add('dark-mode');
-                } else {
-                    document.body.classList.remove('dark-mode');
-                }
-            }
-
-            toggleDarkMode();
-            window.addEventListener('darkmode-change', toggleDarkMode);
-        }
-
-        window.addEventListener('load', () => {
-            addDarkmodeWidget();
-            loadMarkdown();
-        });
-    </script>
-</body>
-</html>
