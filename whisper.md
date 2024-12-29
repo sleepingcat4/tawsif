@@ -7,7 +7,6 @@ Largely because, many Medium, Substack, and millions of LinkedIn people did that
 
 I want to put caution: **If you are not a researcher, have no interest in research, or have reasons to study papers, this post is not targeted towards you.** Saying that, let’s start!
 
----
 
 ## Why did OpenAI make Whisper?
 The reason is adequately defined in the abstract. OpenAI was looking for a way to transcribe large amounts of audio regardless of their quality. This is pretty much self-explanatory for large language model training. 
@@ -18,7 +17,6 @@ OpenAI needed something that was zero-shot and could be translated to almost any
 
 That being said, yes, OpenAI and everyone needed a solution.
 
----
 
 ## What was the solution?
 **Whisper.**  
@@ -33,7 +31,6 @@ Further, getting and processing large amounts of audio-text pairs for training i
 
 Whisper addressed all these problems and introduced something called a **weakly supervised trained model.**  
 
----
 
 ## Weakly Supervised Model
 ### Definition 
@@ -48,13 +45,11 @@ If we quote Radford directly:
 
 Radford argued that this strategy allows the model to achieve out-of-the-box robustness without wasting resources on fine-tuning or leveraging SFT (Supervised Fine-Tuning).  
 
----
 
 ## Interesting Pointers:
 1. When weakly supervised training is scaled, **adding multi-tasking benefits model performance without downsides.**  
 2. **Multilingualism** in weakly supervised training is actually beneficial.  
 
----
 
 ## Why don't people talk about Data Preprocessing?
 Much like Alex of AlexNet, Radford also employed a strong data preprocessing strategy. Radford realized overprocessing data can make a model a parrot—it produces results only when fed high-quality data. 
@@ -69,7 +64,6 @@ Much like Alex of AlexNet, Radford also employed a strong data preprocessing str
 **Additional Measure:**  
 The VoxLingua107 dataset was used to train an intermediate model to identify audio language. Poor-quality data was identified and removed by training initial models to detect bad data percentages.
 
----
 
 ## Why Train on No-Voice Data? 
 It allowed the model to recognize the presence of voice and understand what silence between words feels like.  
@@ -78,7 +72,6 @@ It allowed the model to recognize the presence of voice and understand what sile
 The name *Whisper* itself stands for something more meaningful:  
 **WSPSR** = Web-scale Supervised Pretraining for Speech Recognition.
 
----
 
 ## Model Architecture
 I won’t dive deep into every intricate detail of the Whisper model because it requires a two-part article. However, here are the key highlights:  
@@ -94,7 +87,6 @@ I won’t dive deep into every intricate detail of the Whisper model because it 
 1. Unlike AlexNet’s augmentation-heavy approach, Radford opted for minimal augmentation, believing the model could learn from the true data and generalize well.  
 2. Whisper theoretically attempts to predict the speaker, but due to limited data and 30s audio constraints, this behavior was excluded.
 
----
 
 ## Evaluation
 Radford used **Word Error Rate (WER)** for evaluation but addressed its lack of robustness by standardizing texts before calculating WER.  
@@ -102,7 +94,6 @@ Radford used **Word Error Rate (WER)** for evaluation but addressed its lack of 
 **Human Accuracy Comparison:**  
 Whisper’s accuracy closely approaches human-level accuracy, with ideal accuracy represented as \( y = x \).  
 
----
 
 ## Scaling Laws for Whisper
 While Whisper achieved SOTA, concerns about saturation and idiosyncrasies with large compute and data remain.  
@@ -111,7 +102,6 @@ While Whisper achieved SOTA, concerns about saturation and idiosyncrasies with l
 1. Increasing model size boosts performance, but inherent training data quality issues cause saturation before reaching human level.  
 2. Performance follows a power law up to 54,000 hours, with diminishing returns beyond this point.
 
----
 
 ## Substantially Good Findings
 Unanswered questions include:  
@@ -120,7 +110,6 @@ Unanswered questions include:
 
 Radford or recent papers may have touched on these questions, but they remain exciting research directions.  
 
----
 
 ## Did I Leave Out Anything?
 Yes, tons! Writing about Whisper could never fit into a single post, as Radford documented each step meticulously.  
