@@ -22,8 +22,6 @@ That being said, yes, OpenAI and everyone needed a solution.
 **Whisper.**  
 A model capable of transcribing pretty much any type of audio file out of the box with near human-level accuracy and without hallucinating in its guesses. 
 
----
-
 ## Fine, Why are we talking about Whisper? 
 Past predecessors of Whisper had limited scope and stubborn improvements. Why? Because those papers thought answers always lay in either unsupervised or supervised training. 
 
