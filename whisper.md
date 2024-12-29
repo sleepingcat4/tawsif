@@ -1,5 +1,7 @@
 # Whisper-Explained: A Technical Dive into Radford’s Brilliance 
+![image](https://github.com/user-attachments/assets/ff9a07c3-0d82-46d4-8d4a-e549121064c6)
 
+**Blog Author: sleepingcat4**
 ## Introduction
 Before we dig deep regarding how Whisper is SOTA and so fascinating. I want to clarify that I am writing this from an advanced guy perspective, I have no interest in explaining all the code and architecture stepwise since it does not benefit me. 
 
@@ -31,6 +33,11 @@ Whisper addressed all these problems and introduced something called a **weakly 
 
 
 ## Weakly Supervised Model
+
+![Fig 1: Definition of Weakly Supervised Model](https://github.com/user-attachments/assets/ebec0dd8-1c14-4f47-8b1f-24b3a2dc90e7)
+
+*Fig 1: Definition of Weakly Supervised Model.*
+
 ### Definition 
 If we quote Radford directly:  
 > **Weakly supervised training strategy** means you create a dataset based on whatever information and strategy you have in hand, such as rule-based heuristics, simple past models, pattern matching, and different criteria, and extract data from the large unbound Internet.
@@ -66,10 +73,7 @@ The VoxLingua107 dataset was used to train an intermediate model to identify aud
 ## Why Train on No-Voice Data? 
 It allowed the model to recognize the presence of voice and understand what silence between words feels like.  
 
-**Fun Fact:**  
-The name *Whisper* itself stands for something more meaningful:  
-**WSPSR** = Web-scale Supervised Pretraining for Speech Recognition.
-
+**Fun Fact:**  The name *Whisper* itself stands for something more meaningful: **WSPSR** = Web-scale Supervised Pretraining for Speech Recognition.
 
 ## Model Architecture
 I won’t dive deep into every intricate detail of the Whisper model because it requires a two-part article. However, here are the key highlights:  
@@ -78,8 +82,6 @@ I won’t dive deep into every intricate detail of the Whisper model because it 
 2. **Transformer-based Model:** A simple transformer architecture does the heavy lifting. The real magic lies in the **feature extraction phase.**  
 3. Whisper can be used for almost all audio activities. The architecture is designed for training custom tasks through tokens.  
 4. **Conditioning Transcription Tasks:** Simple tokens control tasks without additional complexity.
-
----
 
 ## Training Concerns and Details (High-Level Explanation)
 1. Unlike AlexNet’s augmentation-heavy approach, Radford opted for minimal augmentation, believing the model could learn from the true data and generalize well.  
@@ -99,7 +101,6 @@ While Whisper achieved SOTA, concerns about saturation and idiosyncrasies with l
 **Key Findings:**
 1. Increasing model size boosts performance, but inherent training data quality issues cause saturation before reaching human level.  
 2. Performance follows a power law up to 54,000 hours, with diminishing returns beyond this point.
-
 
 ## Substantially Good Findings
 Unanswered questions include:  
