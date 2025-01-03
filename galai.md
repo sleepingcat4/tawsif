@@ -1,3 +1,4 @@
+### Galactica paper- Failed to receive to what it deserved
 #### Introduction
 Today, I want to talk about paper “Galactica”, it was one of the earliest pre-ChatGPT and GPT-4 papers and way before the AI craze was a real activity and people gained attention through it. Galactica is an odd paper because it debunks and criticizes the most popular understanding and training strategy of language models. 
 
