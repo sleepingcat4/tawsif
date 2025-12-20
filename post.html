@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNFUCK AI</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Google+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    
+    <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root { 
+            --maroon-accent: #A51C30; 
+            --dartmouth-green: #00693E;
+            --color-bg: #000000; 
+            --color-text: #E0E0E0; 
+            --color-secondary: #AAAAAA;
+        }
+
+        /* --- Custom Scrollbar (Dartmouth Green) --- */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--dartmouth-green); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #004d2e; }
+        * { scrollbar-width: thin; scrollbar-color: var(--dartmouth-green) var(--color-bg); }
+
+        body { 
+            font-family: 'Google Sans', sans-serif; 
+            background-color: var(--color-bg); 
+            color: var(--color-text); 
+            margin: 0; 
+            line-height: 1.6; 
+        }
+
+        .nav-bar { 
+            border-bottom: 1px solid #222; 
+            padding: 20px 0; 
+            background: rgba(0,0,0,0.95); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Harvard Red Link Styling --- */
+        a { color: var(--maroon-accent); text-decoration: none; transition: opacity 0.2s ease; }
+        a:hover { opacity: 0.8; }
+
+        .back-btn { font-weight: 700; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+
+        .post-info-meta {
+            margin-top: 40px;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 0.85em;
+            display: flex;
+            gap: 20px;
+            text-transform: uppercase;
+        }
+
+        .read-time-tag { color: var(--dartmouth-green); font-weight: 700; }
+
+        article { padding: 20px 0 80px 0; }
+
+        /* --- Markdown Content Styling & Underlines --- */
+        #content h1 { 
+            font-size: 2.8em; color: #fff; font-weight: 700; margin-bottom: 0.5em; letter-spacing: -1px; 
+            border-bottom: 3px solid var(--maroon-accent); padding-bottom: 10px;
+        }
+        #content h2 { 
+            color: var(--maroon-accent); border-bottom: 1px solid #333; padding-bottom: 8px; margin-top: 2em; font-weight: 700; 
+        }
+        #content h3 {
+            color: #fff; border-bottom: 1px solid #222; padding-bottom: 5px; margin-top: 1.5em; font-size: 1.4em;
+        }
+        
+        #content p { font-size: 1.1em; color: var(--color-text); margin-bottom: 1.5em; }
+        
+        /* Standard Image/Figure Styling */
+        #content img { 
+            display: block; max-width: 100%; height: auto; margin: 2.5em auto; 
+            border-radius: 6px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        #content img + em {
+            display: block; text-align: center; font-size: 0.9em; color: var(--color-secondary);
+            margin-top: -2em; margin-bottom: 2em;
+        }
+
+        #content code { background: #1a1a1a; padding: 2px 6px; border-radius: 4px; font-family: 'Space Grotesk', monospace; color: #fff; }
+        #content pre { background: #0a0a0a !important; border: 1px solid #222; padding: 1.5em; border-radius: 8px; overflow-x: auto; margin: 2em 0; }
+        
+        .loading { text-align: center; padding: 100px; color: var(--maroon-accent); font-weight: 700; letter-spacing: 2px; }
+        
+        footer { padding: 40px 0; border-top: 1px solid #111; text-align: center; color: #666; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="nav-bar">
+        <div class="container">
+            <a href="blog.html" class="back-btn">← UNFUCK AI</a>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="post-info-meta" id="post-meta" style="display:none;">
+            <span class="read-time-tag" id="read-time">0 MIN READ</span>
+        </div>
+        <article id="content">
+            <div class="loading">INITIALIZING NEURAL RENDERER...</div>
+        </article>
+    </main>
+
+    <footer>
+        Made by sleepingcat4
+    </footer>
+
+    <script>
+        const postMap = {
+            "1": { file: "seq2seq.md", title: "Sequence-to-Sequence" },
+            "2": { file: "whisper.md", title: "Whisper Scaling" },
+            "3": { file: "galai.md", title: "Galactica Explained" },
+            "4": { file: "moe_noam.md", title: "Noam's MOE" }
+        };
+
+        function calculateReadTime(text) {
+            const wordsPerMinute = 200;
+            const noOfWords = text.trim().split(/\s+/).length;
+            const minutes = Math.ceil(noOfWords / wordsPerMinute);
+            return `${minutes} MIN READ`;
+        }
+
+        async function fetchPost() {
+            const params = new URLSearchParams(window.location.search);
+            const postId = params.get('id');
+            const contentDiv = document.getElementById('content');
+            const metaDiv = document.getElementById('post-meta');
+
+            if (!postId || !postMap[postId]) {
+                contentDiv.innerHTML = "<h1>Entry Not Found</h1><p>ID not recognized in the UnFuck archives.</p>";
+                return;
+            }
+
+            const post = postMap[postId];
+            try {
+                const response = await fetch(`posts/${post.file}`);
+                if (!response.ok) throw new Error();
+                const markdown = await response.text();
+                
+                document.title = `${post.title} | UnFuck, AI`;
+                document.getElementById('read-time').innerText = calculateReadTime(markdown);
+                metaDiv.style.display = 'flex';
+
+                contentDiv.innerHTML = marked.parse(markdown);
+
+                Prism.highlightAll();
+                if (window.MathJax && window.MathJax.typeset) {
+                    window.MathJax.typeset();
+                }
+            } catch {
+                contentDiv.innerHTML = `<h1>Load Error</h1><p>Markdown file <b>${post.file}</b> missing in /posts/ folder.</p>`;
+            }
+        }
+        fetchPost();
+    </script>
+</body>
+</html>
